@@ -25,18 +25,12 @@ block content %}
       else %}No Phone{% endif %}
     </p>
     <p>
-      <i class="fas fa-link"></i> {% if venue.website %}<a
-        href="{{ venue.website }}"
-        target="_blank"
-        >{{ venue.website }}</a
-      >{% else %}No Website{% endif %}
+      <i class="fas fa-link"></i> {% if venue.website %}<a href="{{ venue.website }}"
+        target="_blank">{{ venue.website }}</a>{% else %}No Website{% endif %}
     </p>
     <p>
-      <i class="fab fa-facebook-f"></i> {% if venue.facebook_link %}<a
-        href="{{ venue.facebook_link }}"
-        target="_blank"
-        >{{ venue.facebook_link }}</a
-      >{% else %}No Facebook Link{% endif %}
+      <i class="fab fa-facebook-f"></i> {% if venue.facebook_link %}<a href="{{ venue.facebook_link }}"
+        target="_blank">{{ venue.facebook_link }}</a>{% else %}No Facebook Link{% endif %}
     </p>
     {% if venue.seeking_talent %}
     <div class="seeking">
@@ -94,11 +88,10 @@ block content %}
     {% endfor %}
   </div>
 </section>
-<button
-  class="delete-button"
-  data-id="{{ venue.id }}"
-  data-name="{{ venue.name }}"
->
+<button class="edit-button" data-id="{{ venue.id }}">
+  Edit
+</button>
+<button class="delete-button" data-id="{{ venue.id }}" data-name="{{ venue.name }}">
   Delete
 </button>
 <script>
@@ -117,5 +110,11 @@ block content %}
       }
     });
   };
+
+  const editButton = document.querySelector(".edit-button");
+  editButton.onclick = e => {
+    const venueId = e.target.dataset["id"];
+    window.location.href = "/venues/" + venueId + "/edit";
+  }
 </script>
 {% endblock %}
